@@ -8,7 +8,7 @@ const merchantPass = "YourMerchantPass";
 router.post('/create', (req, res, next) => {
 
     let data = {
-        ShopCode: YOURSHOPCODE,
+        ShopCode: "YOURSHOPCODE",
         OrderId: uuid(),
         PurchAmount: req.body.purchAmount,
         Currency: 949,
@@ -60,7 +60,7 @@ router.post('/3DPayOdemeSuccess', (req, res, next) => {
             paramsval += parameters[hashparamsArray[i]];
         }
     }
-    hashval = paramsval + merchantpass;
+    hashval = paramsval + merchantPass;
 
     let hash = f.b64_sha1(hashval);
 
