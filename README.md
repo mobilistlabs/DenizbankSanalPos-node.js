@@ -4,4 +4,4 @@ Bu yazımda sizlere Denizbank sanal pos konusundan bahsedeceğim. Yakın zamanda
 
 Detaylı bilgi için blog yazımı inceleyebilirsiniz.
 
-- [Blog Yazısı: Denizbank NodeJs Sanal Pos Entegrasyonu](https://medium.com/@fuat.kestane)
+- [Blog Yazısı: Denizbank NodeJs Sanal Pos Entegrasyonu](https://medium.com/@fuat.kestane/denizbank-node-js-sanal-pos-entegrasyonu-4f2384482c97)
