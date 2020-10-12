@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Ödeme Test</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Ödeme Formu</h2>
+        <div class="form-group">
+            <label>Ücret</label>
+            <input type="number" class="form-control" id="purchAmount" placeholder="Ücret">
+        </div>
+        <div class="form-group">
+            <label>Kart Numarası</label>
+            <input type="text" class="form-control" id="cardNumber" placeholder="Kart Numarası">
+        </div>
+        <div class="form-group">
+            <label>Kartın Son Kullanım Tarihi</label>
+            <input type="text" class="form-control" id="expiry" placeholder="Kartın Son Kullanım Tarihi">
+        </div>
+        <div class="form-group">
+            <label>CVV Kodu</label>
+            <input type="text" class="form-control" id="cvv2" placeholder="CVV Kodu">
+        </div>
+        <div class="form-group">
+            <label>Kart Tipi</label>
+            <select class="form-control" id="cardType">
+                <option value="0">Visa</option>
+                <option value="1">MasterCard</option>
+            </select>
+        </div>
+        <button class="btn btn-primary" onclick="createPayment()">Ödemeyi Tamamla</button>
+    </div>
+
+</body>
+
+</html>
+
+<script>
+    function createPayment() {
+        $.ajax({
+            type: "POST",
+            url: "http://localhost:3000/payment/create",
+            data: JSON.stringify({
+                purchAmount: $('#purchAmount').val(),
+                cardNumber: $('#cardNumber').val(),
+                cvv2: $('#cvv2').val(),
+                expiry: $('#expiry').val(),
+                cardType: $('#cardType').val(),
+            }),
+            contentType: "application/json",
+            dataType: 'json',
+            success: function (res) {
+                if (res.error) {
+                    console.log("Payment Service Error:", res.error);
+                } else {
+                    let win = window.open('3D.html');
+                    win.document.write(res.data);
+                }
+            },
+            failure: function (err) {
+                console.log(err);
+            }
+        });
+    }
+</script>
